@@ -1,0 +1,28 @@
+/* Classe */
+.Aprendizado{
+    padding: 8px;
+    margin: 17px;
+    border: solid 2px #754;
+    width: 300px;
+    height: 350px;
+    background-color: antiquewhite;
+}
+
+img{
+    border: solid 2px #444;
+}
+
+p{
+    font-size: 20px;
+    
+}
+
+.miniatura{
+    font-size: 14px;
+    background-color: black;
+    color:rgb(195, 128, 128);
+    text-align: center;
+    width: 200px;
+    padding: 7px 9px;
+
+}
