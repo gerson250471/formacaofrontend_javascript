@@ -166,3 +166,28 @@ body {
 .shirink .small {
     flex-shrink: 2;
 }
+
+/* 11 - shorthand */
+.shorthand {
+    display: flex;
+}
+
+.shorthand .box {
+    width: auto;
+    flex: 1 1 50px;
+}
+
+.shorthand .different {
+    flex: 3 1 400px;
+}
+
+.auto-alignment {
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid gray;
+}
+
+.auto-alignment .different {
+    align-self: center;
+}
