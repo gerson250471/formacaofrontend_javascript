@@ -9,8 +9,8 @@
 | Nº  | CAPÍTULO               | INÍCIO           | TERMINO          |
 | --- | ---------------------- | ---------------- | ---------------- |
 | 01  | Introdução             | 09:12 02/05/2024 | 08:22 03/05/2024 |
-| 02  | HTML & CSS             | 08:22 03/05/2024 | Aguardando       |
-| 03  | A linguagem JavaScript | Aguardando       | Aguardando       |
+| 02  | HTML & CSS             | 08:22 03/05/2024 | 09:37 17/05/2024 |
+| 03  | A linguagem JavaScript | 09:38 17/05/2024 | Aguardando       |
 | 04  | React                  | Aguardando       | Aguardando       |
 | 05  | TypeScript             | Aguardando       | Aguardando       |
 | 06  | Conclusão              | Aguardando       | Aguardando       |
