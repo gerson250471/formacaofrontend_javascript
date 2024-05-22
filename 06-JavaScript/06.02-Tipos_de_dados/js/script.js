@@ -67,3 +67,16 @@ console.log(5>3 || "Matheus" === 1);
 console.log(5<3 || 10>11);
 console.log(!true);
 console.log(!5>4);
+
+// 12 - empty values
+console.log(typeof null, typeof undefined);
+console.log(null==undefined);
+console.log(null=== undefined);
+console.log(null == false);
+console.log(undefined ==false);
+
+// 13 - mudança de tipos
+console.log(5 * null);
+console.log("10"+1);
+console.log("10"-1);
+console.log("teste" * "opa");
