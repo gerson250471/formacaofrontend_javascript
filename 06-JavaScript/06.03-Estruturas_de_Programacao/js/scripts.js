@@ -112,3 +112,43 @@ for( b = 1; b < 3 ; b++) {
         }
     }
 } 
+
+// 14 - break
+for(let g=20;g>10;g--){
+    console.log(`O valor de g é: ${g}`);
+
+    if(g===12){
+        console.log("Cheguei no 12");
+        break;
+    }
+}
+
+// 15 - continue
+for(let s=0;s<10;s++){
+    // operador resto=%
+    if(s%2===0){
+        console.log(`${s} é um número par`);
+        continue;
+    }
+    console.log(s)
+}
+
+// 16 - switch
+const job="Analista";
+switch(job){
+    case "Programado":
+        console.log("Você é Programador")
+        break
+    case "Advogado":
+        console.log("Você é Advogado")
+        break
+    case "Juiz":
+        console.log("Você é Juiz")
+        break
+    case "Analista":
+        console.log("Você é Analista")
+        break
+    default:
+        console.log("Não achei sua profissão")
+        break
+}
