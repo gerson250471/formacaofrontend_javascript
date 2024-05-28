@@ -177,3 +177,73 @@ console.log(subArray3);
 
 const subArray4 = testeSlice.slice(6);
 console.log(subArray4);
+
+// 15 - foreach
+const nums = [1,2,3,4,5,6,7,8,9]
+
+nums.forEach((numero) => {
+    console.log(`O número é ${numero}`);
+});
+
+const post = [
+    {titulo:"Primeiro post",categoria:"PHP"},
+    {titulo:"Segundo post",categoria:"Javascript"},
+    {titulo:"Terceiro post",categoria:"Python"},
+]
+
+post.forEach((post) =>{
+    console.log(`Exibindo post: ${post.titulo}, da categoria: ${post.categoria}`);
+});
+
+// 16 - includs
+const marcas = ["BMw","VW","Ford","Fiat","Chevrolet"]
+
+console.log(marcas.includes("Ford"));
+console.log(marcas.includes("KIA"));
+
+// 17 - reverse 
+const rTest = [1,2,4,5,6,7];
+
+rTest.reverse();
+console.log(rTest);
+
+// 18 - trim
+const tTrim = "    Gerson Bernardo da Silva \n   ";
+
+console.log(tTrim);
+console.log(tTrim.trim());
+console.log(tTrim.length);
+console.log(tTrim.trim().length);
+
+// 19 - padStart e padEnd
+/* 
+na versão que estou utilizando não existe mais esta função
+const tpad = 1;
+
+ const novoNumero=tpad.padStart(4,"0");
+ console.log(tpad);
+ console.log(novoNumero);
+
+ const tend = novoNumero.padEnd(6,"0");
+ console.log(tend);
+ */
+
+//  20 - split
+const frase="O rato roeu a roupa do rei de Roma"
+const arrayDaFrase = frase.split(" ");
+console.log(frase);
+console.log(arrayDaFrase);
+
+// 21 - join
+const fraseDeNovo = arrayDaFrase.join(" ");
+
+console.log(fraseDeNovo);
+
+const itens = ["mouse","Teclado","Monitor"];
+const fraseDeCompra = console.log(`Precisamos comprar: ${itens.join(", ")}`);
+console.log(fraseDeCompra);
+
+// 22 - repet
+const graf="l"
+
+console.log(graf.repeat(8));
