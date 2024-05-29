@@ -247,3 +247,71 @@ console.log(fraseDeCompra);
 const graf="l"
 
 console.log(graf.repeat(8));
+
+// 23 - rest operator
+const somaInfinita = (...args) => {
+    let total = 0;
+
+    for(let i = 0;i< args.length;i++){
+        total+= args[i];
+    }
+    return total;
+};
+
+console.log(somaInfinita(1,2,3));
+console.log(somaInfinita(10,20,45,78,15478,54328,123,457,849));
+
+// 24 - for of
+const somaInfinita2 = (...args) => {
+    let total = 0;
+    for (num of args){
+        total += num;
+    }
+    return total
+}
+
+console.log(somaInfinita2(1,2,3,10));
+console.log(somaInfinita2(10,20,45,78,15478,54328,123,457,849,100));
+
+// 25 - destructuring em objetos
+const detalheUsuario = {
+    nome:"Gerson Bernardo",
+    sobrenome:"Silva",
+    profissao:"Analista",
+};
+
+const {nome,sobrenome,profissao} = detalheUsuario;
+console.log(nome,sobrenome,profissao);
+
+/* 
+    Pode ser necessário renomear a varial
+*/
+
+const{nome:primeiroNome} = detalheUsuario;
+console.log(primeiroNome);
+
+// 26 - destructuring com  arrays
+const mLista = ["Avião","Submarino","Carro"]
+
+const [veiculoA,veiculoB,veiculoC] = mLista;
+
+console.log(veiculoA,veiculoB,veiculoC);
+
+// 27 - JSON
+const mJSON = '{"nome":"Gerson Bernardo", "idade":53 , "Habilidades":["PHP","Javascript","Python"]}';
+
+console.log(mJSON);
+console.log(typeof mJSON);
+
+// 28 - JSON para objeto e objeto para JSON
+const meuObjeto = JSON.parse(mJSON);
+console.log(meuObjeto);
+console.log(meuObjeto.nome);
+console.log(typeof meuObjeto);
+
+meuObjeto.isOpenToWork = true;
+console.log(meuObjeto);
+
+const nMeuObjeto = JSON.stringify(meuNome);
+console.log(nMeuObjeto);
+console.log(typeof nMeuObjeto);
