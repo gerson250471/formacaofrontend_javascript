@@ -133,11 +133,11 @@ class Caminhao{
     }
 
     descreverCaminhao(){
-        console.log(`Este caminhão tem ${eixos} eixos e é da cor ${cor}`);
+        console.log(`Este caminhão tem ${this.eixos} eixos e é da cor ${this.cor}`);
     }
 }
 
-const scania = new Caminhao(6,"Vermelho");
+const scania = new Caminhao ( 6 , "Vermelho" );
 console.log(scania);
 
 scania.descreverCaminhao();
@@ -152,3 +152,62 @@ Caminhao.prototype.motor = 4.0;
 
 const c3 = new Caminhao(6,"Azul");
 console.log(c3.motor);
+
+// 11 - override
+class Humano {
+    constructor(nome,idade) {
+        this.nome
+        this.idade
+    }
+}
+
+const matheus = new Humano("Matheus",31)
+console.log(matheus);
+Humano.prototype.idade = "Não definida";
+console.log(matheus.idade);
+console.log(Humano.prototype.idade);
+
+// 12 - symbol
+class Aviao{
+    constructor(marca,turbina) {
+        this.marca = marca;
+        this.turbina = turbina;
+    }
+}
+
+const asas = Symbol();
+const pilotos = Symbol();
+
+Aviao.prototype[asas] = 2;
+Aviao.prototype[pilotos] = 3;
+
+const boeing = new Aviao("Boeing",10);
+console.log(boeing);
+
+console.log(boeing[asas]);
+console.log(boeing[pilotos]);
+
+// 13 - getter e setter
+class Post {
+    constructor(titulo,descricao,tags) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.tags = tags;
+    }
+
+    get exibirTitulo(){
+        return `Você está lendo: ${this.titulo}`;
+    }
+
+    set adicionarTags(tags) {
+        const tagsArray = tags.split(", ")
+        this.tags = tagsArray
+    }
+}
+
+const myPost = new Post("Algum ost","É um post sobre programação");
+console.log(myPost);
+console.log(myPost.exibirTitulo);
+
+myPost.adicionarTags = "programação, javascript, js";
+console.log(myPost);
