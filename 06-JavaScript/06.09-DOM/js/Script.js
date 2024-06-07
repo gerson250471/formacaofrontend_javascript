@@ -77,3 +77,27 @@ const primeiroLink = navLinks.querySelector("a");
 primeiroLink.setAttribute("href","https://www.google.com");
 /* Colocando para abrir em outra aba */
 primeiroLink.setAttribute("target","_blank");
+
+// 09 - altura e largura
+const footer = document.querySelector("footer");
+
+console.log(footer.offsetWidth);
+console.log(footer.offsetHeight);
+
+console.log(footer.clientWidth);
+console.log(footer.clientHeight);
+
+// 10 - posição do elemento
+const product1 = classeElement[0];
+
+console.log(product1.getBoundingClientRect());
+
+// 13 - css com js
+mainContainer.style.color = "blue";
+mainContainer.style.backgroundColor = "#333";
+mainContainer.style.paddingBottom = "15px";
+
+// 14 - alterando estilos de varios elementos
+for(const li of listItens){
+    li.style.backgroundColor = "chocolate";
+}
