@@ -45,43 +45,70 @@ const weighInput = document.querySelector("#weight");
 const calcBtn = document.querySelector("#calc-btn");
 const clearBtn = document.querySelector("#clear-btn");
 
+const calcContainer = document.querySelector("#calc-container");
+const resultContainer = document.querySelector("#result-container");
+
+const imcNumber = document.querySelector("#imc-number span");
+const imcInfo = document.querySelector("#imc-info span");
+
+const backBtn = document.querySelector("#back-btn");
+
 // Funções
+/* Calcular IMC */
+function calcIMC(heigh,weigh) {
+    
+    const imc = (weigh/(heigh * heigh)).toFixed(1);
+
+    return imc
+}
+
 /* Criar tabela com as informações do IMC */
 function createTable(data) {
-    /* Criar a Div */
-    const div = document.createElement("div");
-    /* criar a classe */
-    div.classList.add("table-data");
-
-    /* Criar os parágrafos */
-    const classification = document.createElement("p");
-    classification.innerText = item.classification;
-
-    const info = document.createElement("p");
-    info.innerText = item.classification;
-
-    const obesity = document.createElement("p");
-    obesity.innerText = item.classification;
-
-    /* Colocar a informação na Div */
-    div.appendChild(classification);
-    div.appendChild(info);
-    div.appendChild(obesity);
-
-    /* Colocar no Formulário */
-    imcTabe.appendChild(div);
+    data.forEach((item) => {
+        /* Criar a Div */
+        const div = document.createElement("div");
+        /* colocar a classe */
+        div.classList.add("table-data");
+    
+        /* Criar os parágrafos */
+        const classification = document.createElement("p");
+        classification.innerText = item.classification;
+    
+        const info = document.createElement("p");
+        info.innerText = item.info;
+    
+        const obesity = document.createElement("p");
+        obesity.innerText = item.obesity;
+    
+        /* Colocar a informação na Div */
+        div.appendChild(classification);
+        div.appendChild(info);
+        div.appendChild(obesity);
+    
+        /* Colocar no Formulário */
+        imcTable.appendChild(div);
+    })
 }
 
  /* Limpeza dos dados */
 function clearInputs() {
     heighInput.value = "";
     weighInput.value = "";
+    imcInfo.classList="";
+    imcNumber.classList="";
 }
 
 /* Permitir apenas numeros e virgula */
-function validDigits(text){
+function validDigits(text) {
     return text.replace(/[^0-9,]/g, "");
 }
+
+/* Mostrar ou esconder tabela de resultados */
+function showOrHideResults(){
+    calcContainer.classList.toggle("hide");
+    resultContainer.classList.toggle("hide");
+}
+
 
 // Inicialização
 createTable(data);
@@ -95,7 +122,63 @@ createTable(data);
     });
 });
 
+calcBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    /* a informação chega como texto e com virgula que deve ser trocado por ponto */
+    const heigh = +heighInput.value.replace(",",".")
+    const weigh = +weighInput.value.replace(",",".")
+
+    if (!weigh || !heigh) return
+
+    const imc = calcIMC(heigh,weigh);
+    
+    let info;
+
+    data.forEach((item) => {
+        if(imc >= item.min && imc <= item.max) {
+            info=item.info;
+        }
+    });
+
+    if(!info) return;
+
+    imcNumber.innerText = imc
+    imcInfo.innerText = info
+
+    switch(info) {
+        case "Magreza":
+            imcNumber.classList.add("low");
+            imcInfo.classList.add("low");
+            break;
+        case "Normal":
+            imcNumber.classList.add("good");
+            imcInfo.classList.add("good");
+            break;
+        case "Sobrepeso":
+            imcNumber.classList.add("low");
+            imcInfo.classList.add("low");
+            break;
+        case "Obesidade":
+            imcNumber.classList.add("medium");
+            imcInfo.classList.add("medium");
+            break;
+        case "Obesidade Grave":
+            imcNumber.classList.add("high");
+            imcInfo.classList.add("high");
+            break;
+    }
+
+    showOrHideResults();
+
+});
+
 clearBtn.addEventListener("click", (e) => {
     e.preventDefault();
     clearInputs();
+})
+
+backBtn.addEventListener("click",() => {
+    clearInputs();
+    showOrHideResults();
 })
