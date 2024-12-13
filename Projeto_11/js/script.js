@@ -5,8 +5,16 @@ const todoList = document.querySelector("#todo-list");
 const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
+// parte do todo avançado
+const searchInput = document.querySelector("#search-input");
+const eraseBTN = document.querySelector("#erase-button");
+const filterBtn = document.querySelector("#filter-select");
+
+/* Variável para guardar Titulo para alteração */
+let oldInputValue;
 
 // Funções
+
 /* Colocar a Tarefa na lista */
 const saveTodo = (text) =>{
     /* criar template para inserção */
@@ -56,23 +64,76 @@ const saveTodo = (text) =>{
     todoInput.focus();
 }
 
-/* Marcar Tarefa como completada */
-// Identificar de onde vem o click
+// Organizando o formulário para editar tarefa
+const toggleForms = () => {
+    editForm.classList.toggle("hide");
+    todoForm.classList.toggle("hide");
+    todoList.classList.toggle("hide");
+};
+
+const updateTodo = (texto) =>{
+    /* Obter Listagem de todo */
+    const todos = document.querySelectorAll(".todo")
+
+    todos.forEach((todo) => {
+        let todoTitle = todo.querySelector("h3")
+        if (todoTitle.innerText === oldInputValue){
+            todoTitle.innerText = texto
+        }
+    })
+}
+
+// Identificar de onde vem o click para tomar a ação correta
 document.addEventListener("click", (e) =>{
     /* Elemento */
     const targetEl = e.target;
     /* Pai do Elemento */
     const parentEl = targetEl.closest("div");
+    /* Titulo da Tarefa */
+    let todoTitle;
 
+    if(parentEl && parentEl.querySelector("h3")){
+        todoTitle = parentEl.querySelector("h3").innerText;
+    }
+
+    /* Finalizar tarefa */
     if(targetEl.classList.contains("finish-todo")){
         parentEl.classList.toggle("done");
     }
-
+    /* Remover tarefa */
     if(targetEl.classList.contains("remove-todo")){
         parentEl.remove();
     }
+    /* Editar uma tarefa */
+    if(targetEl.classList.contains("edit-todo")){
+        /* Ocultar parte de lançamento da tarefa */
+        toggleForms();
+        editInput.value=todoTitle;
+        oldInputValue=todoTitle;
+    }
 
 })
+
+/* Configurar o botão cancelar edição do todo */
+cancelEditBtn.addEventListener("click", (e) =>{
+    e.preventDefault()
+    toggleForms();
+})
+
+/* Guardar alteração realizada no todo */
+editForm.addEventListener("submit", (e) =>{
+    e.preventDefault();
+    //obtendo o valor editado
+    const editInputValue = editInput.value
+
+    if (editInputValue){
+        updateTodo(editInputValue);
+    }
+
+    toggleForms();
+
+})
+
 
 
 // Eventos
