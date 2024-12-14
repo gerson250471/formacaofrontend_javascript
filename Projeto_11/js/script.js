@@ -134,6 +134,50 @@ editForm.addEventListener("submit", (e) =>{
 
 })
 
+const getSearchTodos = (texto) => {
+    /* Obter Listagem de todo */
+    const todos = document.querySelectorAll(".todo")
+    /* Padronizar o texto para buscar */
+    const pdTexto = texto.toLowerCase();
+
+    todos.forEach((todo) => {
+        /* Obter Tarefa e padronizar para comparação */
+        let todoTitle = todo.querySelector("h3").innerText.toLowerCase();
+        
+        todo.style.display="flex";
+        
+        if (!todoTitle.includes(pdTexto)){
+            todo.style.display = "none";
+        }
+    })
+};
+
+const filterTodos = (texto) => {
+    /* Obter Listagem de todo */
+    const todos = document.querySelectorAll(".todo")
+
+    switch(texto) {
+        case "all":
+            todos.forEach((todo) => todo.style.display="flex")
+            break
+
+        case "done":
+            todos.forEach((todo) => 
+                todo.classList.contains("done") 
+                ? (todo.style.display="flex")
+                : (todo.style.display="none")
+            );
+            break
+        case "todo":
+            todos.forEach((todo) => 
+                !todo.classList.contains("done") 
+                ? (todo.style.display="flex")
+                : (todo.style.display="none")
+            );
+            break
+    }
+}
+
 
 
 // Eventos
@@ -143,7 +187,28 @@ todoForm.addEventListener("submit", (e) =>{
     if (inputValue){
         saveTodo(inputValue)
     }
-})
+});
 
+/* Caixa de Texto para procurar */
+searchInput.addEventListener("keyup", (e) =>{
+    //Obtendo o valor a procurar
+    const search = e.target.value;
 
+    getSearchTodos(search);
 
+});
+
+/* Limpar pesquisa */
+eraseBTN.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    searchInput.value = "";
+
+    searchInput.dispatchEvent(new Event("keyup"));
+});
+
+/* Filtrar lista */
+filterBtn.addEventListener("change", (e) => {
+    const filterValue = e.target.value;
+    filterTodos(filterValue);
+});
