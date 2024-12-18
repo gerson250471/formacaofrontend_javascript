@@ -16,7 +16,7 @@ let oldInputValue;
 // Funções
 
 /* Colocar a Tarefa na lista */
-const saveTodo = (text) =>{
+const saveTodo = (text,done = 0,save = 1) =>{
     /* criar template para inserção */
     const todo = document.createElement("div")
     /* adicionar a classe */
@@ -44,7 +44,7 @@ const saveTodo = (text) =>{
     editBtn.classList.add("edit-todo")
     /* colocar ícone do botão */
     editBtn.innerHTML ='<i class="fa-solid fa-pen"></i>'
-    /* colocar o botão no toto */
+    /* colocar o botão no todo */
     todo.appendChild(editBtn)
 
     // Terceiro botão
@@ -55,6 +55,15 @@ const saveTodo = (text) =>{
     deleteBtn.innerHTML ='<i class="fa-solid fa-xmark"></i>'
     /* colocar o botão no toto */
     todo.appendChild(deleteBtn)
+
+    /* Utilizando dados da Local storage */
+    if(done) {
+        todo.classList.add("done");
+    }
+
+    if(save) {
+       saveTodoLocalStorage({text,done}) 
+    }
 
     /* Colocar o Todo na lista Geral */
     todoList.appendChild(todo)
@@ -79,6 +88,8 @@ const updateTodo = (texto) =>{
         let todoTitle = todo.querySelector("h3")
         if (todoTitle.innerText === oldInputValue){
             todoTitle.innerText = texto
+
+            updateTodosLocalStorage(oldInputValue,texto);
         }
     })
 }
@@ -99,10 +110,12 @@ document.addEventListener("click", (e) =>{
     /* Finalizar tarefa */
     if(targetEl.classList.contains("finish-todo")){
         parentEl.classList.toggle("done");
+        updateTodosStatusLocalStorage(todoTitle);
     }
     /* Remover tarefa */
     if(targetEl.classList.contains("remove-todo")){
         parentEl.remove();
+        removeTodoLocalStorage(todoTitle);
     }
     /* Editar uma tarefa */
     if(targetEl.classList.contains("edit-todo")){
@@ -111,7 +124,6 @@ document.addEventListener("click", (e) =>{
         editInput.value=todoTitle;
         oldInputValue=todoTitle;
     }
-
 })
 
 /* Configurar o botão cancelar edição do todo */
@@ -178,8 +190,6 @@ const filterTodos = (texto) => {
     }
 }
 
-
-
 // Eventos
 todoForm.addEventListener("submit", (e) =>{
     e.preventDefault();
@@ -212,3 +222,59 @@ filterBtn.addEventListener("change", (e) => {
     const filterValue = e.target.value;
     filterTodos(filterValue);
 });
+
+// Local storage
+const getTodosLocalStorage = () =>{
+    const todos = JSON.parse(localStorage.getItem("todos")) || [];
+    return todos;
+}
+
+/* Obtendo Lista de Todo do local storagem */
+const loadTodos = () => {
+     /* todos os todos da local storage */
+     const todos = getTodosLocalStorage();
+     /* Mostrando na tela */
+    todos.forEach((todo) => {
+        saveTodo(todo.text,todo.done,0);
+    })
+
+}
+
+const saveTodoLocalStorage = (todo) => {
+    /* todos os todos da local storage */
+    const todos = getTodosLocalStorage();
+    /* adicionar novo todo no array */
+    todos.push(todo);
+    /* salvar tudo na local storage */
+    localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+/* Remover do Local storage */
+const removeTodoLocalStorage = (todoText) => {
+    /* todos os todos da local storage */
+    const todos = getTodosLocalStorage();
+    /* Filtrar todos que serão salvos */
+    const filteredTodos = todos.filter((todo) => todo.text !== todoText);
+    localStorage.setItem("todos",JSON.stringify(filteredTodos));
+}
+
+/* Guardar informação de Todo Realizado */
+const updateTodosStatusLocalStorage = (todoText) => {
+   /* todos os todos da local storage */
+   const todos = getTodosLocalStorage();
+   /* Filtrar todos que serão salvos */
+   todos.map((todo) => todo.text === todoText ? todo.done = !todo.done : null);
+   localStorage.setItem("todos",JSON.stringify(todos)); 
+}
+
+/* Guardar informação de Todo Atualizado */
+const updateTodosLocalStorage = (todoOldText,todoNewText) => {
+    /* todos os todos da local storage */
+    const todos = getTodosLocalStorage();
+    /* Filtrar todos que serão salvos */
+    todos.map((todo) => todo.text === todoOldText ? (todo.text = todoNewText) : null);
+    localStorage.setItem("todos",JSON.stringify(todos)); 
+ }
+
+
+loadTodos();
