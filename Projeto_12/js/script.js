@@ -82,3 +82,18 @@ generatePasswordButton.addEventListener("click",() =>{
 openCloseGeneratorButton.addEventListener("click", () => {
     generatePasswordContainer.classList.toggle("hide");
 });
+
+/* Obtendo a senha gerada pelo sistema */
+copyPasswordButton.addEventListener("click",(e) =>{
+    e.preventDefault()
+
+    const password = generatedPasswordElement.querySelector("h4").innerText
+
+    navigator.clipboard.writeText(password).then(() => {
+        copyPasswordButton.innerText="Senha Copiada com Sucesso";
+
+        setTimeout(() => {
+            copyPasswordButton.innerText = "Copiar";
+        },1000);
+    })
+})
