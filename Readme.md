@@ -56,7 +56,7 @@ Lazy Load - https://github.com/matheusbattisti/lazy_loadhttps://github.com/mathe
 | --- | ---------------------- | ---------------- | ---------------- |
 | 01  | Introdução             | 09:12 02/05/2024 | 08:22 03/05/2024 |
 | 02  | HTML & CSS             | 08:22 03/05/2024 | 09:37 17/05/2024 |
-| 03  | A linguagem JavaScript | 09:38 17/05/2024 | Aguardando       |
-| 04  | React                  | Aguardando       | Aguardando       |
+| 03  | A linguagem JavaScript | 09:38 17/05/2024 | 15:38 20/03/2025 |
+| 04  | React                  | 15:44 20/03/2025 | Aguardando       |
 | 05  | TypeScript             | Aguardando       | Aguardando       |
 | 06  | Conclusão              | Aguardando       | Aguardando       |
