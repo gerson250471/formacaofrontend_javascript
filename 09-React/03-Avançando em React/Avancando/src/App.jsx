@@ -10,7 +10,13 @@ import Data from '../components/Data';
 import ListRender from '../components/ListRender';
 
 // 07 - Render condicional
-import { ConditionalRender } from '../components/ConditionalRender';
+import ConditionalRender from '../components/ConditionalRender';
+
+// 08 - props
+import ShowUserName from '../components/ShowUserName';
+
+// 09 - Desestruturando props
+import CarDetails from '../components/CarDetails';
 
 function App() {
   return (
@@ -22,11 +28,15 @@ function App() {
         {/* 2 - imagem em assets */}
         <img src={night} alt="Outra imagem" />
         {/* 3 - useState */}
-        <Data/>
+        <Data />
         {/* 4 - renderização de lista  */}
-        <ListRender/>
+        <ListRender />
         {/* 7 - Render conditional */}
-        <ConditionalRender/>
+        <ConditionalRender />
+        {/* 8 - props */}
+        <ShowUserName name = "Gerson Bernardo" />
+        {/* 9 - desestruturando props */}
+        <CarDetails brand={"Fiat"} km={999} color="Vermelho"/>
       </div>
     </>
   )
