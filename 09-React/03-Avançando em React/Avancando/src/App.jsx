@@ -18,25 +18,56 @@ import ShowUserName from '../components/ShowUserName';
 // 09 - Desestruturando props
 import CarDetails from '../components/CarDetails';
 
+// 11 - renderização de listas com componente
+const cars = [
+  {id:1,brand:"Ferrari",Color:"Amarelo",km:0},
+  {id:2,brand:"kia",Color:"Branco",km:20000},
+  {id:3,brand:"Renault",Color:"Azul",km:32000},
+]
+
+// 12 - fragment
+import Fragment from '../components/Fragment';
+
+// 13 - children
+import Container from '../components/Container';
+
 function App() {
   return (
     <>
       <div className='App' style={{paddingBottom:"800px"}}>
         <h1>Avançando em React</h1>
-        {/* 1 - imagem em public */}
+        {/* 01 - imagem em public */}
         <img src="/img.jpg" alt="Alguma imagem" />
-        {/* 2 - imagem em assets */}
+        {/* 02 - imagem em assets */}
         <img src={night} alt="Outra imagem" />
-        {/* 3 - useState */}
+        {/* 03 - useState */}
         <Data />
-        {/* 4 - renderização de lista  */}
+        {/* 04 - renderização de lista  */}
         <ListRender />
-        {/* 7 - Render conditional */}
+        {/* 07 - Render conditional */}
         <ConditionalRender />
-        {/* 8 - props */}
+        {/* 08 - props */}
         <ShowUserName name = "Gerson Bernardo" />
-        {/* 9 - desestruturando props */}
+        {/* 09 - desestruturando props */}
         <CarDetails brand={"Fiat"} km={999} color="Vermelho"/>
+        {/* 10 - reaproveitamento dos componentes */}
+        <CarDetails brand={"Chevrole"} km={12456} color="blue"/>
+        <CarDetails km={9987} color="orange" brand={"Honda"}  />
+        {/* 11 - renderização de lista com componente */}
+        {cars.map((car) => (
+          <CarDetails
+          id = {car.id}
+          brand={car.brand}
+          km={car.km}
+          color={car.Color}
+          />
+        ))}
+        {/* 12 - fragment */}
+        <Fragment />
+        {/* 13 - children */}
+        <Container>
+          <p>Alguma coisa</p>
+        </Container>
       </div>
     </>
   )
