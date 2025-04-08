@@ -6,7 +6,7 @@ const ListRender = () => {
     const [users,setUsers] = useState([
       {id:1,name:"Mateus",age:32},
       {id:2,name:"Gerson",age:54},
-      {id:3,name:"Marcos",age:52}
+      {id:3,name:"Marcos",age:52},
     ])
 
     const deleteRandom = () =>{
@@ -15,14 +15,13 @@ const ListRender = () => {
       setUsers((prevUsers) => prevUsers.filter((user) => randomNumber !== user.id));
 
     }
-
-
+    
   return (
     <div>
         {/* 4 - render sem key */}
         <ul>
-            {list.map((item) => (
-                <li>{item}</li>
+            {list.map((item,i) => (
+                <li key={i}>{item}</li>
             )) }
         </ul>
         {/* 5 - render com key */}
